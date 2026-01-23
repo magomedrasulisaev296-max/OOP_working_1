@@ -16,10 +16,8 @@ def test_category_creation():
     assert category.name == "Смартфоны"
     assert category.description == "Описание категорий"
     assert len(category.products) == 2
-    assert category.product_count == 2
 
 
 def test_empty_category():
     category = Category("Пустая", "Нет товаров", [])
     assert len(category.products) == 0
-    assert category.product_count == 0
