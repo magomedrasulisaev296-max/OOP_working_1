@@ -12,6 +12,8 @@ class Product:
 
 
 class Category:
+    product_count = int
+    category_count = int
     name = str
     description = str
     products = list
@@ -20,5 +22,5 @@ class Category:
         self.name = name
         self.description = description
         self.products = products
-        Category.product_count =+ len(products)
-        Category.category_count =+ 1
+        self.product_count =+ len(products)
+        self.category_count =+ 1
