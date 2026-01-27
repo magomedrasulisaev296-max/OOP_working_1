@@ -1,3 +1,4 @@
+# тесты на классы
 import pytest
 
 from src.classes import Category, Product

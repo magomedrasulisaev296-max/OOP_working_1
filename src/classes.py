@@ -12,17 +12,15 @@ class Product:
 
 
 class Category:
+    product_count = int
+    category_count = int
     name = str
     description = str
     products = list
-    count_categories = int
-    product_count = int
 
-    def __init__(
-        self, name, description, products, product_count=0, count_categories=0
-    ):
+    def __init__(self, name, description, products):
         self.name = name
         self.description = description
         self.products = products
-        self.product_count = len(products)
-        self.count_categories = count_categories
+        self.product_count =+ len(products)
+        self.category_count =+ 1
