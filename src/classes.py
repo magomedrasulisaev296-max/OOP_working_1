@@ -25,14 +25,14 @@ class Product:
 
     @price.setter
     def price(self, value):
-        if value > 0 and value == int(value):
+        if value > 0 and type(value) in [float, int]:
             self.__price = value
-        elif value < 0:
+        else:
             print("Цена не должна быть нулевая или отрицательная")
 
 
 class Category:
-    product_count = int
+    product_count = 0
     category_count = int
     name = str
     description = str
@@ -42,8 +42,8 @@ class Category:
         self.name = name
         self.description = description
         self.__products = products
-        self.product_count = +len(products)
-        self.category_count = +1
+        self.product_count =+ len(products)
+        self.category_count =+ 1
 
     @property
     def products(self):
@@ -56,4 +56,4 @@ class Category:
 
     def add_product(self, product):
         self.__products.append(product)
-        self.product_count += 1
+        Category.product_count += 1
