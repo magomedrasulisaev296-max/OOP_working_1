@@ -6,9 +6,15 @@
 Проект создан для ознакомления с Класами пайтон и их методами.
 
 ## Реализованные модули:
-src: classes.py
 
-tests: test_classes.py, test_main.py
+### src.classes.py:
+
+Классы: Product, Category.
+
+А так же подклассы класса Product: Smartphone, LawnGrass
+
+### tests.test_classes.py:
+Тесты для classes.py
 
 ## Установка:
 
