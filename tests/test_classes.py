@@ -44,4 +44,9 @@ def test_init_1(category_1, products):
         category_1.description
         == "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни"
     )
-    assert category_1.products == products
+    assert (
+        category_1.products == """Samsung Galaxy S23 Ultra, 180000.0руб. Остаток: 5шт.
+Iphone 15, 210000.0руб. Остаток: 8шт.
+Xiaomi Redmi Note 11, 31000.0руб. Остаток: 14шт.
+"""
+    )
