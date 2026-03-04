@@ -1,4 +1,18 @@
-class Product:
+from abc import ABC, abstractmethod
+
+
+class Log_mixin:
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+        print(repr(self))
+
+    def __repr__(self):
+        name = self.__class__.__name__
+        _dict = self.__class__.__dict__
+        return f"{name}, {_dict['__static_attributes__']}"
+
+
+class Product(Log_mixin):
     name = str
     description = str
     price = float
@@ -9,6 +23,7 @@ class Product:
         self.description = description
         self.__price = price
         self.quantity = quantity
+        super().__init__()
 
     @property
     def price(self):
@@ -61,7 +76,17 @@ class LawnGrass(Product):
         self.color = color
 
 
-class Category:
+class BaseProduct(ABC):
+    @abstractmethod
+    def new_product(self):
+        pass
+
+    @abstractmethod
+    def price(self):
+        pass
+
+
+class Category(Log_mixin):
     product_count = 0
     category_count = int
     name = str
