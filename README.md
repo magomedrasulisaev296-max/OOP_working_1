@@ -13,6 +13,10 @@
 
 А так же подклассы класса Product: Smartphone, LawnGrass
 
+Класс миксин: Log_mixin
+
+Абстрактный класс: BaseProduct
+
 ### tests.test_classes.py:
 Тесты для classes.py
 

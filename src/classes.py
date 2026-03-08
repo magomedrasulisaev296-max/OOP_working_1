@@ -12,7 +12,17 @@ class Log_mixin:
         return f"{name}, {_dict['__static_attributes__']}"
 
 
-class Product(Log_mixin):
+class BaseProduct(ABC):
+    @abstractmethod
+    def new_product(self):
+        pass
+
+    @abstractmethod
+    def price(self):
+        pass
+
+
+class Product(Log_mixin, BaseProduct):
     name = str
     description = str
     price = float
@@ -74,16 +84,6 @@ class LawnGrass(Product):
         self.country = country
         self.germination_period = germination_period
         self.color = color
-
-
-class BaseProduct(ABC):
-    @abstractmethod
-    def new_product(self):
-        pass
-
-    @abstractmethod
-    def price(self):
-        pass
 
 
 class Category(Log_mixin):
