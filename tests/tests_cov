@@ -1,0 +1,9 @@
+Name                    Stmts   Miss  Cover
+-------------------------------------------
+src\__init__.py             0      0   100%
+src\classes.py             22      0   100%
+tests\__init__.py           0      0   100%
+tests\test_classes.py      20      0   100%
+tests\test_main.py         19      0   100%
+-------------------------------------------
+TOTAL                      61      0   100%

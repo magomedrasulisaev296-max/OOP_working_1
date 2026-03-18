@@ -1,46 +1,63 @@
 import pytest
 
-from src.classes import Category, Product
+from src.classes import Category, LawnGrass, Product, Smartphone
 
 
 @pytest.fixture
-def product_1():
-    return Product(
-        "Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5
-    )
+def sample_product():
+    return Product("Phone", "Good", 1000.0, 5)
 
-
-def test_init(product_1):
-    assert product_1.name == "Samsung Galaxy S23 Ultra"
-    assert product_1.description == "256GB, Серый цвет, 200MP камера"
-    assert product_1.price == 180000.0
-    assert product_1.quantity == 5
 
 
 @pytest.fixture
-def products():
-    return [
-        Product(
-            "Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5
-        ),
-        Product("Iphone 15", "512GB, Gray space", 210000.0, 8),
-        Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14),
-    ]
+def sample_category(sample_product):
+    return Category("Electronics", "Devices", [sample_product])
 
 
 @pytest.fixture
-def category_1(products):
-    return Category(
-        "Смартфоны",
-        "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни",
-        products,
-    )
+def empty_sample_category():
+    return Category("Пустая категория", "Категория без продуктов", [])
 
 
-def test_init_1(category_1, products):
-    assert category_1.name == "Смартфоны"
-    assert (
-        category_1.description
-        == "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни"
-    )
-    assert category_1.products == products
+def test_product(sample_product):
+    assert sample_product.name == "Phone"
+    assert sample_product.price == 1000.0
+
+
+def test_price_setter(sample_product):
+    sample_product.price = 2000.0
+    assert sample_product.price == 2000.0
+
+
+def test_str(sample_product):
+    assert "Phone, 1000.0руб" in str(sample_product)
+
+
+def test_new_product():
+    data = {"name": "Test", "description": "Desc", "price": 100.0, "quantity": 5}
+    p = Product.new_product(data)
+    assert p.name == "Test"
+
+
+def test_smartphone():
+    s = Smartphone("iPhone", "Smart", 1000.0, 10, "A15", "15", "256GB", "Black")
+    assert s.model == "15"
+
+
+def test_lawngrass():
+    g = LawnGrass("Grass", "Green", 50.0, 100, "USA", "30 days", "Green")
+    assert g.country == "USA"
+
+
+def test_category(sample_category):
+    assert sample_category.name == "Electronics"
+
+
+def test_add_product(sample_category):
+    p = Product("New", "Desc", 500.0, 1)
+    sample_category.add_product(p)
+    assert "New, 500.0руб" in sample_category.products
+
+def test_middle_price(sample_category, empty_sample_category):
+    assert sample_category.middle_price() == 1000.0
+    assert empty_sample_category.middle_price() == 0
