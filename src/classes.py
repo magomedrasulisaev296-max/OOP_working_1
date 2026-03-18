@@ -34,6 +34,11 @@ class Product(Log_mixin, BaseProduct):
         self.__price = price
         self.quantity = quantity
         super().__init__()
+        if quantity <= 0:
+            raise ValueError
+        else:
+            return
+
 
     @property
     def price(self):
@@ -114,5 +119,24 @@ class Category(Log_mixin):
             self.__products.append(product)
             Category.product_count += 1
 
+
+    def middle_price(self):
+        middle = 0
+        try:
+            for product in self.__products:
+                middle += product.price
+            if len(self.__products) > 0:
+                answer = middle / len(self.__products)
+                return round(answer)
+            else:
+                return 0
+        except ZeroDivisionError:
+            print("check product quantity it's must be 0")
+
+
     def __str__(self):
         return f"{self.name}, количество продуктов: {len(self.__products)}шт.\n"
+
+
+
+

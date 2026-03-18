@@ -8,9 +8,15 @@ def sample_product():
     return Product("Phone", "Good", 1000.0, 5)
 
 
+
 @pytest.fixture
 def sample_category(sample_product):
     return Category("Electronics", "Devices", [sample_product])
+
+
+@pytest.fixture
+def empty_sample_category():
+    return Category("Пустая категория", "Категория без продуктов", [])
 
 
 def test_product(sample_product):
@@ -51,3 +57,7 @@ def test_add_product(sample_category):
     p = Product("New", "Desc", 500.0, 1)
     sample_category.add_product(p)
     assert "New, 500.0руб" in sample_category.products
+
+def test_middle_price(sample_category, empty_sample_category):
+    assert sample_category.middle_price() == 1000.0
+    assert empty_sample_category.middle_price() == 0
